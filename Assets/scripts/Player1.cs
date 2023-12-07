@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     private States State
     {
         get { return (States)anim.GetInteger("state"); }
-        set { anim.SetInteger("state", (int)value); }
+        set { anim.SetInteger("State", (int)value); }
     }
 
 
