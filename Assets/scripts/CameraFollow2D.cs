@@ -35,8 +35,7 @@ namespace N.Fridman.CameraFollow.Scripts
         }
         private void Update()
         {
-            if (cse == 1)
-            {
+
                 if (this.playerTransform)
                 {
                     Vector3 target = new Vector3()
@@ -50,7 +49,7 @@ namespace N.Fridman.CameraFollow.Scripts
 
                     this.transform.position = pos;
                 }
-            }           
+                      
         }
     
     }
