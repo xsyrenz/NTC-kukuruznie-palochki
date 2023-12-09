@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class WaspAI : MonoBehaviour
 {
-    public int speed = -7; 
+    public float speedx = -7;
+    public float speedy = -7;
+    public float koefx = -1;
+    public float koefy = -1;
     private Rigidbody2D rb;
     private SpriteRenderer sp;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity= new Vector2(speed, 0);
+        rb.velocity= new Vector2(speedx, speedy);
         sp= GetComponent<SpriteRenderer>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        speed *= -1;
-        if (speed > 0)
+        speedx *= koefx;
+        speedy*= koefy;
+        if (speedx > 0)
         {
             sp.flipX= true;
         }
@@ -25,7 +29,7 @@ public class WaspAI : MonoBehaviour
         {
             sp.flipX= false;
         }
-        rb.velocity = new Vector2(speed, 0);
+        rb.velocity = new Vector2(speedx, speedy);
         if (collision.CompareTag("Player"))
         {
             Heartsystem.health -= 1;
@@ -34,7 +38,7 @@ public class WaspAI : MonoBehaviour
 
         // Update is called once per frame
         void Update()
-    {
+        {
         
-    }
+        }
 }

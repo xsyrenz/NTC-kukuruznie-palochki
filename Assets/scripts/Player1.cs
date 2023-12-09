@@ -15,13 +15,17 @@ public class Player : MonoBehaviour
     public LayerMask Honey;
     public bool onGround;
     private Transform tf;
-    [Range(-10f, 5f)] public float CheckGroundOffsetY = 0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ y.
+    [Range(-10f, 5f)] public float CheckGroundOffsetY = 0f; // Переменная смещения коллайдера по y.
     [Range(0, 5f)] public float CheckGroundRadius = 0.1f;
     public float xpos;
-    [Range(-10f, 5f)] public float isslowedOffsetY = 0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ y.
+    [Range(-10f, 5f)] public float isslowedOffsetY = 0f; // Переменная смещения коллайдера по y.
     [Range(0, 5f)] public float isslowedRadius = 0.1f;
     public bool isslowed;
+    public bool poisend;
     private Animator anim;
+    float time;
+    public bool djump = false;
+    public bool dj = true;
     public enum States
     {
         idle,
@@ -48,6 +52,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (poisend && time < 5f)
+        {
+            time += Time.deltaTime;
+        }
+        else
+        {
+            poisend = false;
+            time = 0f;
+        }
+
         if (onGround) State = States.idle;
 
         xpos = tf.position.x;
@@ -63,11 +77,11 @@ public class Player : MonoBehaviour
             sprite.flipX = Input.GetAxisRaw("Horizontal") < 0.0f;
             rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
         }
-        onGround = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + CheckGroundOffsetY), CheckGroundRadius, Ground); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+        onGround = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + CheckGroundOffsetY), CheckGroundRadius, Ground); // Проверка входит ли в созданный коллайдер, коллайдер с функциональным слоем Земля.
         isslowed = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + isslowedOffsetY), isslowedRadius, Honey);
-        if (Input.GetKeyDown(KeyCode.Space) && onGround) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+        if (Input.GetKeyDown(KeyCode.Space) && onGround) // Проверка, может ли персонаж прыгать.
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ y.
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Задание скорости движения по y.
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
