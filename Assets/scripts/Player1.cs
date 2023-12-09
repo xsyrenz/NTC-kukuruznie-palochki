@@ -21,9 +21,14 @@ public class Player : MonoBehaviour
     [Range(-10f, 5f)] public float isslowedOffsetY = 0f; // Переменная смещения коллайдера по y.
     [Range(0, 5f)] public float isslowedRadius = 0.1f;
     public bool isslowed;
+    public bool poisend;
     private Animator anim;
+
     public bool djump = false;
     public bool dj = true;
+
+    float time;
+
     public enum States
     {
         idle,
@@ -50,6 +55,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (poisend && time < 5f)
+        {
+            time += Time.deltaTime;
+        }
+        else
+        {
+            poisend = false;
+            time = 0f;
+        }
+
         if (onGround) State = States.idle;
 
         xpos = tf.position.x;
@@ -79,7 +94,7 @@ public class Player : MonoBehaviour
                 Lever.GetComponent<Mechnizm>().Action();
             }
         }
-        if (isslowed)
+        if (isslowed || poisend)
         {
             speed = 0.5f;
             jumpForce= 5;
