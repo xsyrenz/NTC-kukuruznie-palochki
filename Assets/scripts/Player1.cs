@@ -107,14 +107,11 @@ public class Player : MonoBehaviour
         }
         
     }
-
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("lastPos"))
+        if (collision.gameObject.CompareTag("comb"))
         {
-            Heartsystem.lastPos = collision.gameObject;
+            djump = true;
         }
     }
 }

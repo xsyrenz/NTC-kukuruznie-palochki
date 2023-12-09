@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Heartsystem : MonoBehaviour
 {
-    public static GameObject lastPos;
-    public Transform player;
-
     [Range(0, 6)]public static int health = 6;
     public GameObject Heart1, Heart2, Heart3;
     void Start()
@@ -44,8 +41,8 @@ public class Heartsystem : MonoBehaviour
                 Heart1.SetActive(false);
                 Heart2.SetActive(false);
                 Heart3.SetActive(false);
-                Destroy(player);
-                Instantiate(player, lastPos.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+                Application.Quit();
+                Debug.Log("Выход");
                 break;
         }   
         if (health > 3)
