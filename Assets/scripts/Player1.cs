@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     [Range(0, 5f)] public float isslowedRadius = 0.1f;
     public bool isslowed;
     private Animator anim;
+    public bool djump = false;
+    public bool dj = true;
     public enum States
     {
         idle,
@@ -89,5 +91,12 @@ public class Player : MonoBehaviour
             jumpForce = 7f;
         }
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("comb"))
+        {
+            djump = true;
+        }
     }
 }
