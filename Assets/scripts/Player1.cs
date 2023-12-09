@@ -15,10 +15,10 @@ public class Player : MonoBehaviour
     public LayerMask Honey;
     public bool onGround;
     private Transform tf;
-    [Range(-10f, 5f)] public float CheckGroundOffsetY = 0f; // Переменная смещения коллайдера по y.
+    [Range(-10f, 5f)] public float CheckGroundOffsetY = 0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ y.
     [Range(0, 5f)] public float CheckGroundRadius = 0.1f;
     public float xpos;
-    [Range(-10f, 5f)] public float isslowedOffsetY = 0f; // Переменная смещения коллайдера по y.
+    [Range(-10f, 5f)] public float isslowedOffsetY = 0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ y.
     [Range(0, 5f)] public float isslowedRadius = 0.1f;
     public bool isslowed;
     private Animator anim;
@@ -63,11 +63,11 @@ public class Player : MonoBehaviour
             sprite.flipX = Input.GetAxisRaw("Horizontal") < 0.0f;
             rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
         }
-        onGround = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + CheckGroundOffsetY), CheckGroundRadius, Ground); // Проверка входит ли в созданный коллайдер, коллайдер с функциональным слоем Земля.
+        onGround = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + CheckGroundOffsetY), CheckGroundRadius, Ground); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
         isslowed = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + isslowedOffsetY), isslowedRadius, Honey);
-        if (Input.GetKeyDown(KeyCode.Space) && onGround) // Проверка, может ли персонаж прыгать.
+        if (Input.GetKeyDown(KeyCode.Space) && onGround) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Задание скорости движения по y.
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ y.
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
