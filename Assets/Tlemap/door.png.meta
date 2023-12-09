@@ -6,7 +6,7 @@ TextureImporter:
       213: -7341407202210888751
     second: door_0
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -80,6 +80,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -92,6 +93,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -104,6 +106,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -116,9 +119,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 22
-        height: 33
+        height: 29
       alignment: 9
-      pivot: {x: 0.35825497, y: 0.23848455}
+      pivot: {x: 0.37226045, y: 0.24250925}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
