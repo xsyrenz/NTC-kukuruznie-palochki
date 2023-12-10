@@ -7,7 +7,7 @@ public class CS : MonoBehaviour
 {
     private Transform tf;
     public int move = 1;
-    private float speed = 0.01f;
+    private float speed = 0.02f;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +46,7 @@ public class CS : MonoBehaviour
             {
                 move = 4;
                 CameraFollow2D.cse = 1;
+                Player.cse1 = 1; 
             }
         }
         if (move == 1)

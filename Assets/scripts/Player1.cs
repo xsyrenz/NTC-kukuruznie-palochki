@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     float time;
     public bool djump = false;
     public bool dj = true;
+    public static int cse1 = 0;
     public enum States
     {
         idle,
@@ -52,56 +53,58 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (poisend && time < 5f)
+        if (cse1 == 1)
         {
-            time += Time.deltaTime;
-        }
-        else
-        {
-            poisend = false;
-            time = 0f;
-        }
-
-        if (onGround) State = States.idle;
-
-        xpos = tf.position.x;
-        if (Input.GetAxisRaw("Horizontal") == 1)
-        {
-            State = States.run;
-            sprite.flipX = Input.GetAxisRaw("Horizontal") < 0.0f;
-            rb.velocity = new Vector2(1 * speed, rb.velocity.y);
-        }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
-        {
-            State = States.run;
-            sprite.flipX = Input.GetAxisRaw("Horizontal") < 0.0f;
-            rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
-        }
-        onGround = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + CheckGroundOffsetY), CheckGroundRadius, Ground); // Проверка входит ли в созданный коллайдер, коллайдер с функциональным слоем Земля.
-        isslowed = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + isslowedOffsetY), isslowedRadius, Honey);
-        if (Input.GetKeyDown(KeyCode.Space) && onGround) // Проверка, может ли персонаж прыгать.
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Задание скорости движения по y.
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Collider2D[] mecs = Physics2D.OverlapCircleAll(tf.position, 1, Mec);
-            foreach (Collider2D Lever in mecs)
+            if (poisend && time < 5f)
             {
-                Lever.GetComponent<Mechnizm>().Action();
+                time += Time.deltaTime;
+            }
+            else
+            {
+                poisend = false;
+                time = 0f;
+            }
+
+            if (onGround) State = States.idle;
+
+            xpos = tf.position.x;
+            if (Input.GetAxisRaw("Horizontal") == 1)
+            {
+                State = States.run;
+                sprite.flipX = Input.GetAxisRaw("Horizontal") < 0.0f;
+                rb.velocity = new Vector2(1 * speed, rb.velocity.y);
+            }
+            else if (Input.GetAxisRaw("Horizontal") == -1)
+            {
+                State = States.run;
+                sprite.flipX = Input.GetAxisRaw("Horizontal") < 0.0f;
+                rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
+            }
+            onGround = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + CheckGroundOffsetY), CheckGroundRadius, Ground); // Проверка входит ли в созданный коллайдер, коллайдер с функциональным слоем Земля.
+            isslowed = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + isslowedOffsetY), isslowedRadius, Honey);
+            if (Input.GetKeyDown(KeyCode.Space) && onGround) // Проверка, может ли персонаж прыгать.
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Задание скорости движения по y.
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Collider2D[] mecs = Physics2D.OverlapCircleAll(tf.position, 1, Mec);
+                foreach (Collider2D Lever in mecs)
+                {
+                    Lever.GetComponent<Mechnizm>().Action();
+                }
+            }
+            if (isslowed)
+            {
+                speed = 0.5f;
+                jumpForce = 3;
+                Heartsystem.health += 1;
+            }
+            else
+            {
+                speed = 3f;
+                jumpForce = 6f;
             }
         }
-        if (isslowed)
-        {
-            speed = 0.5f;
-            jumpForce= 3;
-            Heartsystem.health += 1;
-        }
-        else
-        {
-            speed = 3f;
-            jumpForce = 6f;
-        }
-        
     }
 }
