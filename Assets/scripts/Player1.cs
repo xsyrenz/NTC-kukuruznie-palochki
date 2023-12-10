@@ -94,13 +94,13 @@ public class Player : MonoBehaviour
         if (isslowed)
         {
             speed = 0.5f;
-            jumpForce= 5;
+            jumpForce= 3;
             Heartsystem.health += 1;
         }
         else
         {
             speed = 3f;
-            jumpForce = 7f;
+            jumpForce = 6f;
         }
         
     }
