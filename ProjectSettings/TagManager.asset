@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Comb
   - LastPos
+  - KILLPLANE
   layers:
   - Default
   - TransparentFX

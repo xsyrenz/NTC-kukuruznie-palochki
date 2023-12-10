@@ -141,6 +141,10 @@ public class Player : MonoBehaviour
         {
             lastpos = collision.gameObject;
         }
+        if (collision.gameObject.CompareTag("KILLPLANE"))
+        {
+            Heartsystem.health = 0;
+        }
     }
 
     void djumpOut()

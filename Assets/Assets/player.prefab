@@ -210,7 +210,7 @@ MonoBehaviour:
     m_Bits: 512
   onGround: 0
   CheckGroundOffsetY: -0.6
-  CheckGroundRadius: 1
+  CheckGroundRadius: 0.72
   xpos: 0
   isslowedOffsetY: 0
   isslowedRadius: 0.1
