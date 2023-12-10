@@ -8,7 +8,7 @@ namespace N.Fridman.CameraFollow.Scripts
         [SerializeField] private Transform playerTransform;
         [SerializeField] private string playerTag;
         [SerializeField] [Range(0.5f, 7.5f)] private float movingSpeed = 1.5f;
-        private int cse = 0;
+        public static int cse = 0;
 
         private void Awake()
         {
@@ -29,12 +29,11 @@ namespace N.Fridman.CameraFollow.Scripts
                 z = this.playerTransform.position.z - 10,
             };
         }
-        public void CtSEnd()
-        {
-            cse = 1;
-        }
+
         private void Update()
         {
+            if (cse == 1)
+            {
 
                 if (this.playerTransform)
                 {
@@ -49,7 +48,7 @@ namespace N.Fridman.CameraFollow.Scripts
 
                     this.transform.position = pos;
                 }
-          
+            }
         }
     
     }
