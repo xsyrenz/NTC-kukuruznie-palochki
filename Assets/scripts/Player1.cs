@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public float djumpout = 0f;
     public bool dj = false;
     public static int cse1 = 0;
+    public SpriteRenderer sprite1;
     public enum States
     {
         idle,
@@ -47,10 +48,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         tf = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite= GetComponent<SpriteRenderer>();
+
     }
 
     // Update is called once per frame
@@ -153,10 +156,12 @@ public class Player : MonoBehaviour
         {
             if (djumpout < 5f)
             {
+                sprite1.enabled= true;
                 djumpout += Time.deltaTime;
             }
             else
             {
+                sprite1.enabled = false;
                 djump = false;
                 djumpout = 0f;
             }
