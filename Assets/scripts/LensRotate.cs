@@ -22,11 +22,11 @@ public class LensRotate : MonoBehaviour
         ray.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.9f, 0.32f, 1f - a * 2);
         if (1f - a > 0.9f)
         {
-            ray.GetComponent<Fire>().isFire = true;
+            ray.GetComponent<Fire1>().isFire = true;
         }
         else
         {
-            ray.GetComponent<Fire>().isFire = false;
+            ray.GetComponent<Fire1>().isFire = false;
         }
     }
 

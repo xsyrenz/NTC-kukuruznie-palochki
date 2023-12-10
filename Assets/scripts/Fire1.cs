@@ -7,9 +7,8 @@ using UnityEngine.UIElements;
 using UnityEngine.Rendering;
 using System.Runtime.CompilerServices;
 
-public class Fire : MonoBehaviour
+public class Fire1 : MonoBehaviour
 {
-    public Transform fs;
     public bool isFire = false;
     public float timer = 5f;
     public float t = 0f;
@@ -30,7 +29,6 @@ public class Fire : MonoBehaviour
             {
                 if (i == 1)
                 {
-                    Instantiate(fs, gameObject.transform.position, gameObject.transform.rotation);
                     i = 0;
                 }
             }
