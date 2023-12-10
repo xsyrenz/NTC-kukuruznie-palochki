@@ -21,8 +21,16 @@ public class Door : MonoBehaviour
     public void Open()
     {
         Debug.Log("Open");
-        sprite.color= Color.grey;
-        cl.isTrigger = true;
+        
+        cl.isTrigger = !cl.isTrigger;
+        if (cl.isTrigger == true)
+        {
+            sprite.color = Color.grey;
+        }
+        else
+        {
+            sprite.color = Color.white;
+        }
     }
 
     // Update is called once per frame
