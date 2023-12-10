@@ -7,7 +7,7 @@ public class CS : MonoBehaviour
 {
     private Transform tf;
     public int move = 1;
-    private float speed = 0.02f;
+    private float speed = 0.015f;
     // Start is called before the first frame update
     void Start()
     {
