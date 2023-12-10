@@ -41,8 +41,7 @@ public class Heartsystem : MonoBehaviour
                 Heart1.SetActive(false);
                 Heart2.SetActive(false);
                 Heart3.SetActive(false);
-                Application.Quit();
-                Debug.Log("Выход");
+                Heartsystem.health = 2;
                 break;
         }   
         if (health > 3)

@@ -5,6 +5,8 @@ using static UnityEditor.VersionControl.Asset;
 
 public class Player : MonoBehaviour
 {
+    public static GameObject lastpos;
+
     public float speed = 3f;
     public float jumpForce = 15f;
     private Rigidbody2D rb;
@@ -56,6 +58,11 @@ public class Player : MonoBehaviour
     {
         if (cse1 == 1)
         {
+            if (Heartsystem.health == 0)
+            {
+                tf.SetPositionAndRotation(lastpos.transform.position, new Quaternion(0, 0, 0, 0));
+            }
+
             djumpOut();
 
             if (poisend && time < 5f)
@@ -129,6 +136,10 @@ public class Player : MonoBehaviour
         {
             djump = true;
             djumpout = 0f;
+        }
+        if (collision.gameObject.CompareTag("LastPos"))
+        {
+            lastpos = collision.gameObject;
         }
     }
 
