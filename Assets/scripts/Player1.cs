@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     private Animator anim;
     float time;
     public bool djump = false;
-    public bool dj = true;
+    public float djumpout = 0f;
+    public bool dj = false;
     public static int cse1 = 0;
     public enum States
     {
@@ -55,6 +56,8 @@ public class Player : MonoBehaviour
     {
         if (cse1 == 1)
         {
+            djumpOut();
+
             if (poisend && time < 5f)
             {
                 time += Time.deltaTime;
@@ -82,9 +85,21 @@ public class Player : MonoBehaviour
             }
             onGround = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + CheckGroundOffsetY), CheckGroundRadius, Ground); // Проверка входит ли в созданный коллайдер, коллайдер с функциональным слоем Земля.
             isslowed = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y + isslowedOffsetY), isslowedRadius, Honey);
-            if (Input.GetKeyDown(KeyCode.Space) && onGround) // Проверка, может ли персонаж прыгать.
+            if (Input.GetKeyDown(KeyCode.Space)) // Проверка, может ли персонаж прыгать.
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Задание скорости движения по y.
+                if (onGround)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Задание скорости движения по y.
+                    if (djump == true)
+                    {
+                        dj = true;
+                    }
+                }
+                else if (dj)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Задание скорости движения по y.
+                    dj = false;
+                }
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -104,6 +119,31 @@ public class Player : MonoBehaviour
             {
                 speed = 3f;
                 jumpForce = 6f;
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Comb"))
+        {
+            djump = true;
+            djumpout = 0f;
+        }
+    }
+
+    void djumpOut()
+    {
+        if (djump)
+        {
+            if (djumpout < 5f)
+            {
+                djumpout += Time.deltaTime;
+            }
+            else
+            {
+                djump = false;
+                djumpout = 0f;
             }
         }
     }
